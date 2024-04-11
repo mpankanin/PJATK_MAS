@@ -6,8 +6,11 @@ public class ProjectTeam {
 
     private Long id;
     private Employer teamLeader;
-    private List<Employer> teamMembers;
+    private Employer[] teamMembers;
     private List<Project> projects;
+
+    //class attribute
+    private static Integer maxEmployers = 10;
 
 
 }

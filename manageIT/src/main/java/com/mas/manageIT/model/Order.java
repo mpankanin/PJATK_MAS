@@ -10,6 +10,8 @@ public class Order {
     private Double price;
     private LocalDate startDate;
     private LocalDate finishDate;
+
+    //repeatable attribute
     private List<Customer> customers;
     private ProjectTeam projectTeam;
 
