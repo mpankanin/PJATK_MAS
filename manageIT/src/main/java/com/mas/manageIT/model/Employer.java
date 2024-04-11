@@ -1,10 +1,19 @@
 package com.mas.manageIT.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@EqualsAndHashCode(callSuper = true)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Employer extends Person{
 
     private String role;
@@ -18,37 +27,6 @@ public class Employer extends Person{
     //extension
     private static List<Employer> extent = new ArrayList<>();
 
-    public Employer(String firstName, String lastName, String email, String role) {
-        super(firstName, lastName, email);
-        this.role = role;
-        this.hireDate = LocalDate.now();
-        bonus = Optional.empty();
-        addEmployer(this);
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public LocalDate getHireDate() {
-        return hireDate;
-    }
-
-    public void setHireDate(LocalDate hireDate) {
-        this.hireDate = hireDate;
-    }
-
-    public Optional<Integer> getBonus() {
-        return bonus;
-    }
-
-    public void setBonus(Optional<Integer> bonus) {
-        this.bonus = bonus;
-    }
 
     public void addEmployer(Employer employer){
         extent.add(employer);

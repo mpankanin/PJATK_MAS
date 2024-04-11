@@ -1,8 +1,17 @@
 package com.mas.manageIT.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Customer extends Person {
 
     private String company;
@@ -10,27 +19,6 @@ public class Customer extends Person {
 
     private static List<Customer> extent = new ArrayList<>();
 
-    public Customer(String firstName, String lastName, String email, String company, String correspondenceAddress) {
-        super(firstName, lastName, email);
-        this.company = company;
-        this.correspondenceAddress = correspondenceAddress;
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
-    }
-
-    public String getCorrespondenceAddress() {
-        return correspondenceAddress;
-    }
-
-    public void setCorrespondenceAddress(String correspondenceAddress) {
-        this.correspondenceAddress = correspondenceAddress;
-    }
 
     public void addCustomer(Customer customer){
         extent.add(customer);
