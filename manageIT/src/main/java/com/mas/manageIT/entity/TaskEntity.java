@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,8 +39,13 @@ public class TaskEntity {
     @Column(name = "FINISH_DATE", nullable = false)
     private LocalDate finishDate;
 
+    @ManyToOne
     private ProjectEntity project;
-    private EmployerEntity assigner;
+
+    @ManyToOne
     private EmployerEntity assignee;
+
+    @ManyToOne
+    private EmployerEntity assigner;
 
 }

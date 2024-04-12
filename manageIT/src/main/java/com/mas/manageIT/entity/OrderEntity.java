@@ -1,10 +1,15 @@
 package com.mas.manageIT.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,7 +25,7 @@ import java.util.List;
 @AllArgsConstructor
 
 @Entity
-@Table(name = "ORDER")
+@Table(name = "ORDERS")
 public class OrderEntity {
 
     @Id
@@ -36,8 +41,17 @@ public class OrderEntity {
     @Column(name = "FINISH_DATE", nullable = false)
     private LocalDate finishDate;
 
-    private List<CustomerEntity> customers;
+    @Column(name = "STATUS", nullable = false)
+    private String status;
+
+    @ManyToOne
+    private CustomerEntity customer;
+
+    @ManyToOne
     private ProjectTeamEntity projectTeam;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "project_id", referencedColumnName = "id")
     private ProjectEntity project;
 
 }

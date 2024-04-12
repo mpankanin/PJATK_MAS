@@ -1,15 +1,22 @@
 package com.mas.manageIT.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @Builder
@@ -39,6 +46,18 @@ public class ProjectEntity {
     @Column(name = "FINISH_DATE", nullable = false)
     private String finishDate;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id", referencedColumnName = "id")
+    private OrderEntity order;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "project_manager_id", referencedColumnName = "id")
     private EmployerEntity projectManager;
+
+    @ManyToOne
+    private ProjectTeamEntity projectTeam;
+
+    @OneToMany(mappedBy = "project")
+    private List<TaskEntity> tasks;
 
 }
