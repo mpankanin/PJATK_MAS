@@ -1,13 +1,12 @@
 package com.mas.manageIT.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 public abstract class Person {
 
     @NonNull
@@ -22,7 +21,12 @@ public abstract class Person {
     @NonNull
     private String email;
 
-    public abstract String getType();
+    public Person(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
 
+    public abstract String getType();
 
 }

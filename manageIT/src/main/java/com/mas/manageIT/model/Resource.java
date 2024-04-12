@@ -14,11 +14,17 @@ import java.time.LocalDate;
 public class Resource {
 
     private Long id;
+
     private ResourceType resourceType;
+
     private ResourceState resourceState;
+
     private LocalDate purchaseDate;
-    private Employer dutyHolder;
+
+    private Employer careTaker;
+
     private Employer assignee;
+
     private Project project;
 
 }

@@ -13,13 +13,23 @@ import java.util.List;
 public class Order {
 
     private Long id;
+
     private Project project;
+
     private Double price;
+
     private LocalDate startDate;
+
     private LocalDate finishDate;
 
     //repeatable attribute
     private List<Customer> customers;
+
     private ProjectTeam projectTeam;
+
+    //overloaded method
+    public Double getPrice(float vatRate) {
+        return price * vatRate;
+    }
 
 }

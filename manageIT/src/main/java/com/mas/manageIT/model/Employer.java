@@ -27,7 +27,9 @@ public class Employer extends Person{
     //extension
     private static List<Employer> extent = new ArrayList<>();
 
-
+    public Integer getBonus() {
+        return bonus.orElse(0);
+    }
     public void addEmployer(Employer employer){
         extent.add(employer);
     }
@@ -41,6 +43,11 @@ public class Employer extends Person{
         for (Employer employer : extent){
             System.out.println(employer);
         }
+    }
+
+    //derived attribute
+    public int yearsOfService(){
+        return LocalDate.now().getYear() - hireDate.getYear();
     }
 
     @Override
