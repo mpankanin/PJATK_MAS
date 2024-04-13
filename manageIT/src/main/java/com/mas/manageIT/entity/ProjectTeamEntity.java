@@ -33,9 +33,6 @@ public class ProjectTeamEntity {
     @Column(name = "NAME", nullable = false)
     private String name;
 
-    @Column(name = "DESCRIPTION", nullable = false)
-    private String description;
-
     @OneToMany(mappedBy = "projectTeam")
     private List<ProjectEntity> projects;
 

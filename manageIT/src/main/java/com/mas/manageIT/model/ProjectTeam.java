@@ -17,15 +17,26 @@ public class ProjectTeam {
     private Long id;
 
     @NonNull
-    private Employer teamLeader;
-
-    @NonNull
-    private Employer[] teamMembers = new Employer[maxEmployers];
+    private String name;
 
     @Nullable
     private List<Project> projects;
 
+    @NonNull
+    private Employer[] teamMembers = new Employer[maxEmployers];
+
+    @NonNull
+    private Employer teamLeader;
+
     //class attribute
     private static Integer maxEmployers = 10;
+
+    public Integer getMaxEmployers() {
+        return maxEmployers;
+    }
+
+    public void setMaxEmployers(Integer maxEmployers) {
+        ProjectTeam.maxEmployers = maxEmployers;
+    }
 
 }

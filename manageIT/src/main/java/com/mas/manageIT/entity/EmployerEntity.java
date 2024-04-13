@@ -50,6 +50,9 @@ public class EmployerEntity {
     @Column(name = "BONUS")
     private Integer bonus;
 
+    @Column(name = "ROLE")
+    private String role;
+
     @ManyToOne
     private ProjectTeamEntity projectTeam;
 

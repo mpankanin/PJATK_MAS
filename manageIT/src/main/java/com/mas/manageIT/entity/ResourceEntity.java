@@ -32,6 +32,9 @@ public class ResourceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "RESOURCE_NAME", nullable = false)
+    private String name;
+
     @Column(name = "RESOURCE_TYPE", nullable = false)
     private ResourceType resourceType;
 

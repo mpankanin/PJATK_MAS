@@ -41,8 +41,8 @@ public class OrderEntity {
     @Column(name = "STATUS", nullable = false)
     private String status;
 
-    @ManyToOne
-    private CustomerEntity customer;
+    @ManyToMany
+    private List<CustomerEntity> customers;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "project_id", referencedColumnName = "id")

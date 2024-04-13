@@ -16,6 +16,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -41,10 +42,10 @@ public class ProjectEntity {
     private String status;
 
     @Column(name = "START_DATE", nullable = false)
-    private String startDate;
+    private LocalDate startDate;
 
     @Column(name = "FINISH_DATE", nullable = false)
-    private String finishDate;
+    private LocalDate finishDate;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id", referencedColumnName = "id")

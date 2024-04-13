@@ -27,7 +27,6 @@ public class Order {
     private LocalDate insertionDate;
 
     //repeatable attribute
-    @NonNull
     private List<Customer> customers;
 
     //overloaded method

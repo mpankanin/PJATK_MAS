@@ -16,6 +16,8 @@ public class Customer extends Person {
     @Size(max = 50)
     private String company;
 
+    private List<Order> orders;
+
     private static List<Customer> extent = new ArrayList<>();
 
     public Customer() {

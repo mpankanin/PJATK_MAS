@@ -19,6 +19,9 @@ public class Resource {
     private Long id;
 
     @NonNull
+    private String name;
+
+    @NonNull
     private ResourceType resourceType;
 
     @NonNull
