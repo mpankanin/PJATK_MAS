@@ -3,6 +3,8 @@ package com.mas.manageIT.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 
 import java.util.List;
 
@@ -11,12 +13,16 @@ import java.util.List;
 @AllArgsConstructor
 public class ProjectTeam {
 
+    @NonNull
     private Long id;
 
+    @NonNull
     private Employer teamLeader;
 
-    private Employer[] teamMembers;
+    @NonNull
+    private Employer[] teamMembers = new Employer[maxEmployers];
 
+    @Nullable
     private List<Project> projects;
 
     //class attribute

@@ -1,5 +1,6 @@
 package com.mas.manageIT.entity;
 
+import com.mas.manageIT.model.enums.TaskType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,7 +32,7 @@ public class TaskEntity {
     private String description;
 
     @Column(name = "TASK_TYPE", nullable = false)
-    private String taskType;
+    private TaskType taskType;
 
     @Column(name = "START_DATE", nullable = false)
     private LocalDate startDate;

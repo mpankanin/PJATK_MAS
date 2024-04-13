@@ -50,10 +50,6 @@ public class ProjectEntity {
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     private OrderEntity order;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "project_manager_id", referencedColumnName = "id")
-    private EmployerEntity projectManager;
-
     @ManyToOne
     private ProjectTeamEntity projectTeam;
 

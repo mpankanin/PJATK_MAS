@@ -38,11 +38,17 @@ public class EmployerEntity {
     @Column(name = "EMAIL", nullable = false)
     private String email;
 
-    @Column(name = "COMPANY", nullable = false)
-    private String company;
+    @Column(name = "PHONE_NUMBER", nullable = false)
+    private String phoneNumber;
 
-    @Column(name = "CORRESPONDENCE_ADDRESS", nullable = false)
+    @Column(name = "CORRESPONDENCE_ADDRESS")
     private String correspondenceAddress;
+
+    @Column(name = "SALARY", nullable = false)
+    private Integer salary;
+
+    @Column(name = "BONUS")
+    private Integer bonus;
 
     @ManyToOne
     private ProjectTeamEntity projectTeam;

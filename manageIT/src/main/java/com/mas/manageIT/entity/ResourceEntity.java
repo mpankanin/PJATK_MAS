@@ -1,5 +1,7 @@
 package com.mas.manageIT.entity;
 
+import com.mas.manageIT.model.enums.ResourceState;
+import com.mas.manageIT.model.enums.ResourceType;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,6 +17,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -28,20 +32,14 @@ public class ResourceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "NAME", nullable = false)
-    private String name;
+    @Column(name = "RESOURCE_TYPE", nullable = false)
+    private ResourceType resourceType;
 
-    @Column(name = "DESCRIPTION", nullable = false)
-    private String description;
+    @Column(name = "RESOURCE_STATE", nullable = false)
+    private ResourceState resourceState;
 
-    @Column(name = "STATUS", nullable = false)
-    private String status;
-
-    @Column(name = "START_DATE", nullable = false)
-    private String startDate;
-
-    @Column(name = "FINISH_DATE", nullable = false)
-    private String finishDate;
+    @Column(name = "PURCHASE_DATE", nullable = false)
+    private LocalDate purchaseDate;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "care_taker_id", referencedColumnName = "id")

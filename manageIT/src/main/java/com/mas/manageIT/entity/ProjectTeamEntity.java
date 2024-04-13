@@ -37,9 +37,6 @@ public class ProjectTeamEntity {
     private String description;
 
     @OneToMany(mappedBy = "projectTeam")
-    private List<OrderEntity> orders;
-
-    @OneToMany(mappedBy = "projectTeam")
     private List<ProjectEntity> projects;
 
     @OneToMany(mappedBy = "projectTeam")

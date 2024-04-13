@@ -2,27 +2,29 @@ package com.mas.manageIT.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import org.springframework.lang.NonNull;
 
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@NoArgsConstructor
-//@AllArgsConstructor
 public class Customer extends Person {
 
+    @NonNull
+    @Size(max = 50)
     private String company;
-
-    private String correspondenceAddress;
 
     private static List<Customer> extent = new ArrayList<>();
 
-    public Customer(String name, String surname, String email, String company, String correspondenceAddress) {
-        super(name, surname, email);
+    public Customer() {
+        addCustomer(this);
+    }
+
+    public Customer(String name, String surname, String email, String phoneNumber, String correspondenceAddress, @NonNull String company) {
+        super(name, surname, email, phoneNumber, correspondenceAddress);
         this.company = company;
-        this.correspondenceAddress = correspondenceAddress;
         addCustomer(this);
     }
 
@@ -40,6 +42,10 @@ public class Customer extends Person {
         for (Customer customer : extent){
             System.out.println(customer);
         }
+    }
+
+    public static List<Customer> getCustomers() {
+        return extent;
     }
 
     //override method

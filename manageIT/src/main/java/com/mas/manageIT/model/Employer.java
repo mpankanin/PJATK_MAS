@@ -1,25 +1,30 @@
 package com.mas.manageIT.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import org.springframework.lang.NonNull;
 
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Employer extends Person{
 
+    @NonNull
+    @Size(max = 50)
     private String role;
 
     //composite attribute
+    @NonNull
     private LocalDate hireDate;
+
+    @NonNull
+    private Integer salary;
 
     //optional attribute
     private Optional<Integer> bonus;
@@ -27,19 +32,36 @@ public class Employer extends Person{
     //extension
     private static List<Employer> extent = new ArrayList<>();
 
+    public Employer() {
+        this.hireDate = LocalDate.now();
+        this.bonus = Optional.empty();
+        addEmployer(this);
+    }
+
+    public Employer(String name, String surname, String email, String phoneNumber, String correspondenceAddress, @NonNull String role, Integer bonus) {
+        super(name, surname, email, phoneNumber, correspondenceAddress);
+        this.role = role;
+        this.hireDate = LocalDate.now();
+        this.bonus = Optional.ofNullable(bonus);
+        addEmployer(this);
+    }
+    public static List<Employer> getEmployers() {
+        return extent;
+    }
+
     public Integer getBonus() {
         return bonus.orElse(0);
     }
-    public void addEmployer(Employer employer){
+    public static void addEmployer(Employer employer){
         extent.add(employer);
     }
 
-    public void removeEmployer(Employer employer){
+    public static void removeEmployer(Employer employer){
         extent.remove(employer);
     }
 
-    public void showExtent(){
-        System.out.println("Extent of the class: " + this.getClass().getName());
+    public static void showExtent(){
+        System.out.println("Extent of the class: " + Employer.class.getName());
         for (Employer employer : extent){
             System.out.println(employer);
         }
@@ -48,6 +70,10 @@ public class Employer extends Person{
     //derived attribute
     public int yearsOfService(){
         return LocalDate.now().getYear() - hireDate.getYear();
+    }
+
+    public int yearsOfService(LocalDate date){
+        return date.getYear() - hireDate.getYear();
     }
 
     @Override
@@ -66,4 +92,5 @@ public class Employer extends Person{
                 ", bonus: " + (bonus.orElse(0)) +
                 "}";
     }
+
 }

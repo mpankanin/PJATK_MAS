@@ -3,6 +3,8 @@ package com.mas.manageIT.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,24 +14,25 @@ import java.util.List;
 @AllArgsConstructor
 public class Order {
 
+    @NonNull
     private Long id;
 
+    @NonNull
     private Project project;
 
-    private Double price;
+    @NonNull
+    private Integer price;
 
-    private LocalDate startDate;
-
-    private LocalDate finishDate;
+    @NonNull
+    private LocalDate insertionDate;
 
     //repeatable attribute
+    @NonNull
     private List<Customer> customers;
 
-    private ProjectTeam projectTeam;
-
     //overloaded method
-    public Double getPrice(float vatRate) {
-        return price * vatRate;
+    public Double getPrice(double vatRate) {
+        return price + price * vatRate;
     }
 
 }

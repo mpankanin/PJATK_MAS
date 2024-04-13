@@ -33,22 +33,16 @@ public class OrderEntity {
     private Long id;
 
     @Column(name = "PRICE", nullable = false)
-    private Double price;
+    private Integer price;
 
-    @Column(name = "START_DATE", nullable = false)
-    private LocalDate startDate;
-
-    @Column(name = "FINISH_DATE", nullable = false)
-    private LocalDate finishDate;
+    @Column(name = "INSERTION_DATE", nullable = false)
+    private LocalDate insertionDate;
 
     @Column(name = "STATUS", nullable = false)
     private String status;
 
     @ManyToOne
     private CustomerEntity customer;
-
-    @ManyToOne
-    private ProjectTeamEntity projectTeam;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "project_id", referencedColumnName = "id")

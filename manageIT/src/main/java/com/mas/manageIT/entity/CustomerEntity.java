@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -37,11 +36,14 @@ public class CustomerEntity {
     @Column(name = "EMAIL", nullable = false)
     private String email;
 
+    @Column(name = "PHONE_NUMBER", nullable = false)
+    private String phoneNumber;
+
+    @Column(name = "CORRESPONDENCE_ADDRESS")
+    private String correspondenceAddress;
+
     @Column(name = "COMPANY", nullable = false)
     private String company;
-
-    @Column(name = "CORRESPONDENCE_ADDRESS", nullable = false)
-    private String correspondenceAddress;
 
     @OneToMany(mappedBy = "customer")
     List<OrderEntity> orders;
