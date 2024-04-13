@@ -1,5 +1,6 @@
 package com.mas.manageIT.service;
 
+import com.mas.manageIT.entity.CustomerEntity;
 import com.mas.manageIT.model.Customer;
 import com.mas.manageIT.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
@@ -13,19 +14,19 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public void save(Customer customer) {
+    public void save(CustomerEntity customer) {
         customerRepository.save(customer);
     }
 
-    public void delete(Customer customer) {
+    public void delete(CustomerEntity customer) {
         customerRepository.delete(customer);
     }
 
-    public Customer getById(Long id) {
+    public CustomerEntity getById(Long id) {
         return customerRepository.findById(id).orElse(null);
     }
 
-    public Iterable<Customer> getAll() {
+    public Iterable<CustomerEntity> getAll() {
         return customerRepository.findAll();
     }
 

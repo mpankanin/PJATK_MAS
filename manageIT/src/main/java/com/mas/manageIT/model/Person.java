@@ -35,7 +35,8 @@ public abstract class Person {
     @Size(max = 100)
     private String correspondenceAddress;
 
-    public Person(@NonNull String firstName, @NonNull String lastName, @NonNull String email, @NonNull String phoneNumber, @Nullable String correspondenceAddress) {
+    public Person(@NonNull Long id, @NonNull String firstName, @NonNull String lastName, @NonNull String email, @NonNull String phoneNumber, @Nullable String correspondenceAddress) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

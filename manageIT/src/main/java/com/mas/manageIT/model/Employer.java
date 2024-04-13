@@ -38,8 +38,8 @@ public class Employer extends Person{
         addEmployer(this);
     }
 
-    public Employer(String name, String surname, String email, String phoneNumber, String correspondenceAddress, @NonNull String role, Integer bonus) {
-        super(name, surname, email, phoneNumber, correspondenceAddress);
+    public Employer(Long id, String name, String surname, String email, String phoneNumber, String correspondenceAddress, @NonNull String role, Integer bonus) {
+        super(id, name, surname, email, phoneNumber, correspondenceAddress);
         this.role = role;
         this.hireDate = LocalDate.now();
         this.bonus = Optional.ofNullable(bonus);

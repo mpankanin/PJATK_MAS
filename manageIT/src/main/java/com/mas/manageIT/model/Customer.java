@@ -22,8 +22,8 @@ public class Customer extends Person {
         addCustomer(this);
     }
 
-    public Customer(String name, String surname, String email, String phoneNumber, String correspondenceAddress, @NonNull String company) {
-        super(name, surname, email, phoneNumber, correspondenceAddress);
+    public Customer(Long id, String name, String surname, String email, String phoneNumber, String correspondenceAddress, @NonNull String company) {
+        super(id, name, surname, email, phoneNumber, correspondenceAddress);
         this.company = company;
         addCustomer(this);
     }
