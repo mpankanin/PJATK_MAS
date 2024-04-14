@@ -1,5 +1,6 @@
 package com.mas.manageIT.model;
 
+import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
