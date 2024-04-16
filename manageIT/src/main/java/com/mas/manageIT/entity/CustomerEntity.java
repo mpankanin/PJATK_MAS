@@ -39,6 +39,7 @@ public class CustomerEntity {
     @Column(name = "COMPANY", nullable = false)
     private String company;
 
+    //plain association - many to many
     @ManyToMany
     List<OrderEntity> orders;
 
