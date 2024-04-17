@@ -1,12 +1,17 @@
 package com.mas.manageIT.model;
 
+import com.mas.manageIT.Exception.AssociationException;
+import com.mas.manageIT.Exception.OrderNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -31,6 +36,23 @@ public class Order {
 
     //association with an attribute
     private List<CustomerOrder> customerOrders;
+
+    //association - composition
+    private List<Document> documents = new ArrayList<>();
+    private Set<Document> allDocuments = new HashSet<>();
+
+    //composition adding part
+    public void addDocument(Document document) throws AssociationException {
+        if(!documents.contains(document)){
+            if(allDocuments.contains(document)){
+                throw new AssociationException("Composition - the part is already connected with a whole.");
+            }
+            documents.add(document);
+
+            //adding document to control association rules
+            allDocuments.add(document);
+        }
+    }
 
     //overloaded method
     public Double getPrice(double vatRate) {
@@ -70,6 +92,14 @@ public class Order {
     //remove association with an attribute
     public void removeCustomerAttr(Customer customer){
         customerOrders.removeIf(customerOrder -> customerOrder.getCustomer().equals(customer));
+    }
+
+    public String compositionToString(){
+        StringBuilder compositionInfo = new StringBuilder("Whole: " + this.getClass().getName() + '\n');
+        for (Document document : documents){
+            compositionInfo.append(document.getId() + '\n');
+        }
+        return compositionInfo.toString();
     }
 
 }
