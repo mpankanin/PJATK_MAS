@@ -56,7 +56,6 @@ public class EmployerEntity {
     @ManyToOne
     private ProjectTeamEntity projectTeam;
 
-    //plain association - one to many
     @OneToMany(mappedBy = "assignee")
     private List<ResourceEntity> resources;
 

@@ -25,9 +25,6 @@ public class Customer extends Person {
     //association with an attribute
     private List<CustomerOrder> customerOrders = new ArrayList<>();
 
-    //qualified association
-    private Map<Long, Order> ordersQualified = new TreeMap<>();
-
     public Customer() {
         addCustomer(this);
     }
@@ -56,35 +53,6 @@ public class Customer extends Person {
 
     public static List<Customer> getCustomers() {
         return extent;
-    }
-
-    //qualified association - add
-    public void addOrderQualified(Order order){
-        if(!ordersQualified.containsKey(order.getId())){
-            ordersQualified.put(order.getId(), order);
-
-            //reverse connection
-            order.addCustomer(this);
-        }
-    }
-
-    //qualified association - remove
-    public void removeOrderQualified(Order order){
-        if(ordersQualified.containsKey(order.getId())){
-            ordersQualified.remove(order.getId());
-
-            //reverse connection
-            order.removeCustomer(this);
-        }
-    }
-
-    //qualified association - find
-    public Order findOrderQualified(Long id) throws Exception{
-        if(!ordersQualified.containsKey(id)){
-            throw new Exception("Order not found: " + id);
-        }
-
-        return ordersQualified.get(id);
     }
 
     //add association with an attribute

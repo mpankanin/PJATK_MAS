@@ -1,7 +1,6 @@
 package com.mas.manageIT.model;
 
-import com.mas.manageIT.Exception.AssociationException;
-import com.mas.manageIT.Exception.OrderNotFoundException;
+import com.mas.manageIT.exception.AssociationException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,7 +30,6 @@ public class Order {
     private LocalDate insertionDate;
 
     //repeatable attribute
-    //qualified association - second side
     private List<Customer> customers;
 
     //association with an attribute
@@ -57,26 +55,6 @@ public class Order {
     //overloaded method
     public Double getPrice(double vatRate) {
         return price + price * vatRate;
-    }
-
-    //qualified association - second side
-    public void addCustomer(Customer customer) {
-        if(!customers.contains(customer)) {
-            customers.add(customer);
-
-            //primary connection
-            customer.addOrderQualified(this);
-        }
-    }
-
-    //qualified association - second side
-    public void removeCustomer(Customer customer) {
-        if(customers.contains(customer)) {
-            customers.remove(customer);
-
-            //primary connection
-            customer.removeOrderQualified(this);
-        }
     }
 
     //add association with an attribute

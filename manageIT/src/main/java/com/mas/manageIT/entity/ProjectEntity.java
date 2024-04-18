@@ -51,9 +51,11 @@ public class ProjectEntity {
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     private OrderEntity order;
 
+    //plain association - database
     @ManyToOne
     private ProjectTeamEntity projectTeam;
 
+    //qualified association - database
     @OneToMany(mappedBy = "project")
     private List<TaskEntity> tasks;
 

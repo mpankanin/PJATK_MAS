@@ -33,6 +33,7 @@ public class ProjectTeamEntity {
     @Column(name = "NAME", nullable = false)
     private String name;
 
+    //plain association - database
     @OneToMany(mappedBy = "projectTeam")
     private List<ProjectEntity> projects;
 

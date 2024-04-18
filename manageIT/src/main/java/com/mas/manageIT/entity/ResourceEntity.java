@@ -48,7 +48,6 @@ public class ResourceEntity {
     @JoinColumn(name = "care_taker_id", referencedColumnName = "id")
     private EmployerEntity careTaker;
 
-    //plain association - many to one
     @ManyToOne
     private EmployerEntity assignee;
 

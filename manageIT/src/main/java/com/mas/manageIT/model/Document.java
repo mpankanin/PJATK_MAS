@@ -1,6 +1,6 @@
 package com.mas.manageIT.model;
 
-import com.mas.manageIT.Exception.OrderNotFoundException;
+import com.mas.manageIT.exception.OrderNotFoundException;
 import lombok.Data;
 
 @Data

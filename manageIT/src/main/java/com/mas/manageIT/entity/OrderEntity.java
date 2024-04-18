@@ -42,7 +42,7 @@ public class OrderEntity {
     @Column(name = "STATUS", nullable = false)
     private String status;
 
-    //plain association - many to many
+    //association with an attribute - database
     @ManyToMany
     private List<CustomerEntity> customers;
 

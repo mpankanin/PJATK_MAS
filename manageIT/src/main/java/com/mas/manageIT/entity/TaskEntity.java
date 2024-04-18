@@ -40,6 +40,7 @@ public class TaskEntity {
     @Column(name = "FINISH_DATE", nullable = false)
     private LocalDate finishDate;
 
+    //qualified association - database
     @ManyToOne
     private ProjectEntity project;
 

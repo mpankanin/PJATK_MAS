@@ -19,6 +19,7 @@ public class ProjectTeam {
     @NonNull
     private String name;
 
+    //plain association
     @Nullable
     private List<Project> projects;
 
