@@ -29,20 +29,3 @@ Qualified association (OneToMany)
 
 Composition (OneToMany)
     Order - Document
-
-### MAS - Mini-project 3
-
-Abstraction and polymorphism
-    Person {abstract} - Customer / Employer
-    polymorphism - getType() method
-
-Overlapping
-
-
-Multiple inheritance
-
-
-Multiple aspect inheritance
-
-
-Dynamic inheritance
