@@ -7,8 +7,6 @@ import org.springframework.lang.NonNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
