@@ -8,9 +8,6 @@ public abstract class PersonDynamic {
     private String surname;
     private LocalDate birthDate;
 
-    public PersonDynamic() {
-    }
-
     public PersonDynamic(String name, String surname, LocalDate birthDate) {
         this.name = name;
         this.surname = surname;

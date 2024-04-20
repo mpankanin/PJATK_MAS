@@ -1,5 +1,6 @@
 package dynamic;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,12 @@ public class MaleDynamic extends PersonDynamic {
     private boolean isArmyMember;
 
     private static List<MaleDynamic> extent = new ArrayList<>();
+
+    public MaleDynamic(String name, String surname, LocalDate birthDate, boolean isArmyMember){
+        super(name, surname, birthDate);
+        this.isArmyMember = isArmyMember;
+        addMale(this);
+    }
 
     public MaleDynamic(PersonDynamic prevPerson, boolean isArmyMember){
         //Copy the old data
@@ -42,6 +49,10 @@ public class MaleDynamic extends PersonDynamic {
         for (MaleDynamic male : extent){
             System.out.println(male);
         }
+    }
+
+    public static List<MaleDynamic> getExtent(){
+        return extent;
     }
 
     @Override
