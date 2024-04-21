@@ -21,7 +21,7 @@ public class ProductOwnerOverlapping extends ObjectPlusPlus{
 
     @Override
     public String toString() {
-        return "multi_inheritance.ProductOwner{" +
+        return "ProductOwner{" +
                 "productName='" + productName + '\'' +
                 '}';
     }

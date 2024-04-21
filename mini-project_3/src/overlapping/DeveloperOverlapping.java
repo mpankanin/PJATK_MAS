@@ -23,7 +23,7 @@ public class DeveloperOverlapping extends ObjectPlusPlus{
 
     @Override
     public String toString() {
-        return "multi_inheritance.Developer{" +
+        return "Developer{" +
                 "knownProgrammingLanguages=" + knownProgrammingLanguages +
                 '}';
     }

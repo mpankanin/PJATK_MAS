@@ -68,19 +68,19 @@ public abstract class PersonMultiAspect {
         this.maidenName = maidenName;
     }
 
-    public @Nullable Boolean getPregnant() {
+    public @Nullable Boolean getIsPregnant() {
         return isPregnant;
     }
 
-    public void setPregnant(@Nullable Boolean pregnant) {
+    public void setIsPregnant(@Nullable Boolean pregnant) {
         isPregnant = pregnant;
     }
 
-    public @Nullable Boolean getArmyMember() {
+    public @Nullable Boolean getIsArmyMember() {
         return isArmyMember;
     }
 
-    public void setArmyMember(@Nullable Boolean armyMember) {
+    public void setIsArmyMember(@Nullable Boolean armyMember) {
         isArmyMember = armyMember;
     }
 

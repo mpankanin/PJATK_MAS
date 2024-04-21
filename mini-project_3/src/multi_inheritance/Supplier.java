@@ -9,8 +9,9 @@ public class Supplier extends PersonMulti {
 
     private List<String> products;
 
-    public Supplier(String name, String surname, LocalDate birthDate) {
+    public Supplier(String name, String surname, LocalDate birthDate, List<String> products) {
         super(name, surname, birthDate);
+        this.products = products;
     }
 
     public List<String> getProducts() {

@@ -48,11 +48,11 @@ public abstract class ObjectPlusPlus extends ObjectPlus implements Serializable 
     }
 
     public void addLink(String roleName, String reverseRoleName, ObjectPlusPlus targetObject, Object qualifier){
-        addLink(roleName, reverseRoleName, targetObject, 2);
+        addLink(roleName, reverseRoleName, targetObject, qualifier,2);
     }
 
     public void addLink(String roleName, String reverseRoleName, ObjectPlusPlus targetObject){
-        addLink(roleName, reverseRoleName, targetObject);
+        addLink(roleName, reverseRoleName, targetObject, targetObject);
     }
 
     public void addPart(String roleName, String reverseRoleName, ObjectPlusPlus partObject) throws Exception {

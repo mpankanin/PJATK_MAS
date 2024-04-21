@@ -25,7 +25,7 @@ public class PersonOverlapping extends ObjectPlusPlus{
         this.birthDate = birthDate;
     }
 
-    //Creates person as a multi_inheritance.Developer
+    //Creates person as a Developer
     public PersonOverlapping(String name, String surname, LocalDate birthDate, List<String> knownProgrammingLanguages) {
         super();
 
@@ -37,7 +37,7 @@ public class PersonOverlapping extends ObjectPlusPlus{
         addDeveloper(knownProgrammingLanguages);
     }
 
-    //Creates person as a multi_inheritance.ProductOwner
+    //Creates person as a ProductOwner
     public PersonOverlapping(String name, String surname, LocalDate birthDate, String productName) {
         super();
 
@@ -70,7 +70,7 @@ public class PersonOverlapping extends ObjectPlusPlus{
             ObjectPlusPlus[] objects = this.getLinks(roleNameDeveloper);
             return ((DeveloperOverlapping) objects[0]).getKnownProgrammingLanguages();
         }catch (Exception exception) {
-            throw new DeveloperNotFoundException("The object is not a multi_inheritance.Developer");
+            throw new DeveloperNotFoundException("The object is not a Developer");
         }
     }
 
@@ -79,7 +79,7 @@ public class PersonOverlapping extends ObjectPlusPlus{
             ObjectPlusPlus[] objects = this.getLinks(roleNameProductOwner);
             return ((ProductOwnerOverlapping) objects[0]).getProductName();
         }catch (Exception exception) {
-            throw new ProductOwnerNotFoundException("The object is not a multi_inheritance.ProductOwner");
+            throw new ProductOwnerNotFoundException("The object is not a ProductOwner");
         }
     }
 
@@ -91,17 +91,17 @@ public class PersonOverlapping extends ObjectPlusPlus{
                 '}');
         try {
             if (this.anyLink(roleNameDeveloper)) {
-                //multi_inheritance.Developer
+                //Developer
                 ObjectPlusPlus[] object = this.getLinks(roleNameDeveloper);
 
-                sb.append("multi_inheritance.Developer: " + ((DeveloperOverlapping) object[0]).toString());
+                sb.append("Developer: " + ((DeveloperOverlapping) object[0]).toString());
             }
 
             if (this.anyLink(roleNameProductOwner)) {
-                //multi_inheritance.ProductOwner
+                //ProductOwner
                 ObjectPlusPlus[] object = this.getLinks(roleNameProductOwner);
 
-                sb.append("multi_inheritance.ProductOwner: " + (((ProductOwnerOverlapping) object[0]).toString()));
+                sb.append("ProductOwner: " + (((ProductOwnerOverlapping) object[0]).toString()));
             }
 
         }catch (Exception exception){

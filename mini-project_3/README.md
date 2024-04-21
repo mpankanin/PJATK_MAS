@@ -1,19 +1,19 @@
 ### MAS - Mini-project 3
 
 Abstraction and polymorphism
-    dynamic.PersonDynamic {abstract} - multi_inheritance.Customer / Employer
+    PersonDynamic {abstract} - Customer / Employer
     polymorphism - getType() method
 
 Overlapping
-dynamic.PersonDynamic - overlapping.DeveloperOverlapping / overlapping.ProductOwnerOverlapping
+    PersonDynamic - DeveloperOverlapping / ProductOwnerOverlapping
 
 Multiple inheritance
-    dynamic.PersonDynamic - multi_inheritance.Customer / multi_inheritance.Supplier - multi_inheritance.CustomerSupplier (discount)
+    PersonDynamic - Customer / Supplier - CustomerSupplier (discount)
 
 Multiple aspect inheritance
-    dynamic.PersonDynamic - role (overlapping.ProductOwnerOverlapping, overlapping.DeveloperOverlapping, multi_inheritance.Customer)
-    dynamic.PersonDynamic - gender (dynamic.FemaleDynamic, dynamic.MaleDynamic)
+    PersonDynamic - role (ProductOwnerOverlapping, DeveloperOverlapping, Customer)
+    PersonDynamic - gender (FemaleDynamic, MaleDynamic)
 
 Dynamic inheritance
-    dynamic.PersonDynamic - dynamic.MaleDynamic / dynamic.FemaleDynamic
+    PersonDynamic - MaleDynamic / FemaleDynamic
 
