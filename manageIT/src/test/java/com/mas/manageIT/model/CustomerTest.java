@@ -2,6 +2,10 @@ package com.mas.manageIT.model;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CustomerTest {
@@ -40,6 +44,35 @@ class CustomerTest {
 
         // then
         assertEquals("Customer", type);
+    }
+
+    @Test
+    void should_create_association_with_attribute_Customer_Order() {
+        // given
+        Customer customer = new Customer(1L, "John", "Doe", "johndoe@gmail.com", "123456789", "Correspondence Address", "Company");
+        Order order = new Order(1L, new Project(), 100, LocalDate.now(), new ArrayList<>());
+
+        // when
+        customer.addOrderAttr(order, 100.0);
+
+        // then
+        assertEquals(1, customer.getCustomerOrders().size());
+        assertEquals(1, order.getCustomerOrders().size());
+    }
+
+    @Test
+    void should_delete_association_with_attribute_Customer_Order() {
+        // given
+        Customer customer = new Customer(1L, "John", "Doe", "johndoe@gmail.com", "123456789", "Correspondence Address", "Company");
+        Order order = new Order(1L, new Project(), 100, LocalDate.now(), new ArrayList<>());
+
+        // when
+        customer.addOrderAttr(order, 100.0);
+        customer.removeOrderAttr(order);
+
+        // then
+        assertEquals(0, customer.getCustomerOrders().size());
+        assertEquals(0, order.getCustomerOrders().size());
     }
 
 }

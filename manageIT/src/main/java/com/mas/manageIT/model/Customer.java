@@ -60,12 +60,22 @@ public class Customer extends Person {
                 return;
             }
         }
-        customerOrders.add(new CustomerOrder(price, this, order));
+        CustomerOrder customerOrder = new CustomerOrder(price, this, order);
+
+        customerOrders.add(customerOrder);
+        order.getCustomerOrders().add(customerOrder);
     }
 
     //remove association with an attribute
     public void removeOrderAttr(Order order){
-        customerOrders.removeIf(customerOrder -> customerOrder.getOrder().equals(order));
+        for(CustomerOrder customerOrder : customerOrders){
+            if(customerOrder.getOrder().equals(order)){
+                customerOrders.remove(customerOrder);
+                order.getCustomerOrders().remove(customerOrder);
+                return;
+            }
+        }
+        //customerOrders.removeIf(customerOrder -> customerOrder.getOrder().equals(order));
     }
 
     //override method

@@ -11,7 +11,7 @@ public class DocumentMapper {
         String name = (documentEntity.getName());
         String description = (documentEntity.getDescription());
         Order order = OrderMapper.toModel(documentEntity.getOrder());
-        return Document.createDocument(id, order, name, description);
+        return Document.createDocument(id, name, description, order);
     }
 
     public static DocumentEntity toEntity(Document document){

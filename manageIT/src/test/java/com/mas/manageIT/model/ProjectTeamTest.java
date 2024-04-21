@@ -2,6 +2,9 @@ package com.mas.manageIT.model;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProjectTeamTest {
@@ -18,6 +21,23 @@ class ProjectTeamTest {
 
         // then
         assertEquals(maxEmployers1, maxEmployers2);
+    }
+
+    @Test
+    void should_create_plain_association_ProjectTeam_Project() {
+        // given
+        ProjectTeam projectTeam = new ProjectTeam();
+
+        Project project = new Project();
+        Project project2 = new Project();
+
+        List<Project> projects = new ArrayList<>();
+
+        // when
+        projectTeam.setProjects(projects);
+
+        // then
+        assertEquals(projects, projectTeam.getProjects());
     }
 
 }
