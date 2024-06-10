@@ -1,5 +1,6 @@
 package com.mas.manageIT.entity;
 
+import com.mas.manageIT.model.enums.PaymentStatus;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,31 +27,29 @@ import java.util.List;
 @AllArgsConstructor
 
 @Entity
-@Table(name = "ORDERS")
+@Table(name = "ORDER")
 public class OrderEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "PRICE", nullable = false)
-    private Integer price;
-
     @Column(name = "INSERTION_DATE", nullable = false)
     private LocalDate insertionDate;
 
-    @Column(name = "STATUS", nullable = false)
-    private String status;
+    @Column(name = "PRICE", nullable = false)
+    private double price;
 
-    //association with an attribute - database
-    @ManyToMany
-    private List<CustomerEntity> customers;
+    @Column(name = "PAYMENT_STATUS", nullable = false)
+    private PaymentStatus paymentStatus;
+
+    @ManyToOne
+    private CustomerEntity customer;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "project_id", referencedColumnName = "id")
     private ProjectEntity project;
 
-    //association composition - database
     @OneToMany(mappedBy = "order")
     private List<DocumentEntity> documents;
 

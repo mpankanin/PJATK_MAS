@@ -1,5 +1,6 @@
 package com.mas.manageIT.entity;
 
+import com.mas.manageIT.model.enums.DocumentType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,13 +26,12 @@ public class DocumentEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "NAME", nullable = false)
-    private String name;
+    @Column(name = "TYPE", nullable = false)
+    private DocumentType type;
 
     @Column(name = "DESCRIPTION")
     private String description;
 
-    //association composition - database
     @ManyToOne
     private OrderEntity order;
 
