@@ -1,12 +1,9 @@
 package com.mas.manageIT.model;
 
-import com.mas.manageIT.model.enums.ResourceState;
 import com.mas.manageIT.model.enums.ResourceType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.lang.NonNull;
-import org.springframework.lang.Nullable;
 
 import java.time.LocalDate;
 
@@ -15,25 +12,16 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Resource {
 
-    @NonNull
     private Long id;
 
-    @NonNull
     private String name;
 
-    @NonNull
     private ResourceType resourceType;
 
-    @NonNull
-    private ResourceState resourceState;
-
-    @NonNull
     private LocalDate purchaseDate;
 
-    @NonNull
-    private Employer careTaker;
+    private TeamMember assignee;
 
-    @Nullable
-    private Employer assignee;
+    private Warehouse warehouse;
 
 }

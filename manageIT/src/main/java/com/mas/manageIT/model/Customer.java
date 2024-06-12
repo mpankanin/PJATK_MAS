@@ -1,37 +1,27 @@
 package com.mas.manageIT.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.lang.NonNull;
+import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
+
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class Customer extends Person {
 
-    @NonNull
-    @Size(max = 50)
     private String company;
 
     private List<Order> orders;
 
     private static List<Customer> extent = new ArrayList<>();
 
-    //association with an attribute
     private List<CustomerOrder> customerOrders = new ArrayList<>();
-
-    public Customer() {
-        addCustomer(this);
-    }
-
-    public Customer(Long id, String name, String surname, String email, String phoneNumber, String correspondenceAddress, @NonNull String company) {
-        super(id, name, surname, email, phoneNumber, correspondenceAddress);
-        this.company = company;
-        addCustomer(this);
-    }
 
     public static void addCustomer(Customer customer){
         extent.add(customer);
@@ -82,6 +72,11 @@ public class Customer extends Person {
     @Override
     public String getType() {
         return this.getClass().getSimpleName();
+    }
+
+    @Override
+    public Boolean isMale() {
+        return null;
     }
 
 }

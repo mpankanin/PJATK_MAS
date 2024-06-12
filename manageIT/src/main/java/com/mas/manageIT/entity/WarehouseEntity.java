@@ -36,9 +36,9 @@ public class WarehouseEntity {
     @Column(name = "ADDRESS", nullable = false)
     private String address;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "warehouse_manager_id", referencedColumnName = "id")
-    private EmployerEntity warehouseManager;
+    @OneToOne
+    @JoinColumn(name = "WAREHOUSE_MANAGER_ID")
+    private WarehouseManagerEntity warehouseManager;
 
     @OneToMany(mappedBy = "warehouse")
     private List<ResourceEntity> storedResources;

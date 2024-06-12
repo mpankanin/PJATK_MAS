@@ -1,6 +1,5 @@
 package com.mas.manageIT.entity;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,15 +32,14 @@ public class ProjectTeamEntity {
     @Column(name = "NAME", nullable = false)
     private String name;
 
-    //plain association - database
+    @OneToOne
+    @JoinColumn(name = "TEAM_LEADER_ID")
+    private TeamMemberEntity teamLeader;
+
+    @OneToMany(mappedBy = "projectTeam")
+    private List<TeamMemberEntity> teamMembers;
+
     @OneToMany(mappedBy = "projectTeam")
     private List<ProjectEntity> projects;
-
-    @OneToMany(mappedBy = "projectTeam")
-    private List<EmployerEntity> teamMembers;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "team_leader_id", referencedColumnName = "id")
-    private EmployerEntity teamLeader;
 
 }

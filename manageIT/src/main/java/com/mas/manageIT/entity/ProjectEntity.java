@@ -32,30 +32,26 @@ public class ProjectEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "NAME", nullable = false)
+    @Column(name = "NAME")
     private String name;
 
-    @Column(name = "DESCRIPTION", nullable = false)
+    @Column(name = "DESCRIPTION")
     private String description;
 
-    @Column(name = "STATUS", nullable = false)
-    private String status;
-
-    @Column(name = "START_DATE", nullable = false)
+    @Column(name = "START_DATE")
     private LocalDate startDate;
 
-    @Column(name = "FINISH_DATE", nullable = false)
+    @Column(name = "FINISH_DATE")
     private LocalDate finishDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
-    private OrderEntity order;
-
-    //plain association - database
     @ManyToOne
+    @JoinColumn(name = "PROJECT_TEAM_ID")
     private ProjectTeamEntity projectTeam;
 
-    //qualified association - database
+    @OneToOne
+    @JoinColumn(name = "ORDER_ID")
+    private OrderEntity order;
+
     @OneToMany(mappedBy = "project")
     private List<TaskEntity> tasks;
 

@@ -44,10 +44,11 @@ public class OrderEntity {
     private PaymentStatus paymentStatus;
 
     @ManyToOne
+    @JoinColumn(name = "PERSON_ID")
     private CustomerEntity customer;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "project_id", referencedColumnName = "id")
+    @JoinColumn(name = "PROJECT_ID")
     private ProjectEntity project;
 
     @OneToMany(mappedBy = "order")

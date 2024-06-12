@@ -4,43 +4,26 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 
 @Entity
 @Table(name = "CUSTOMER")
-public class CustomerEntity {
+public class CustomerEntity extends PersonEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "FIRST_NAME", nullable = false)
-    private String firstName;
-
-    @Column(name = "LAST_NAME", nullable = false)
-    private String lastName;
-
-    @Column(name = "EMAIL", nullable = false)
-    private String email;
-
-    @Column(name = "PHONE_NUMBER", nullable = false)
-    private String phoneNumber;
-
-    @Column(name = "CORRESPONDENCE_ADDRESS")
-    private String correspondenceAddress;
-
-    @Column(name = "COMPANY", nullable = false)
+    @Column(name = "COMPANY")
     private String company;
 
-    //association with an attribute - database
     @ManyToMany(mappedBy = "customers")
-    List<OrderEntity> orders;
+    private List<OrderEntity> orders;
 
 }

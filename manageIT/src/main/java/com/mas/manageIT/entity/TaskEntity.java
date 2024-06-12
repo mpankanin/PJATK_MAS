@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -28,26 +29,24 @@ public class TaskEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "DESCRIPTION", nullable = false)
+    @Column(name = "DESCRIPTION")
     private String description;
 
-    @Column(name = "TASK_TYPE", nullable = false)
+    @Column(name = "TASK_TYPE")
     private TaskType taskType;
 
-    @Column(name = "START_DATE", nullable = false)
+    @Column(name = "START_DATE")
     private LocalDate startDate;
 
-    @Column(name = "FINISH_DATE", nullable = false)
+    @Column(name = "FINISH_DATE")
     private LocalDate finishDate;
 
-    //qualified association - database
     @ManyToOne
+    @JoinColumn(name = "PROJECT_ID")
     private ProjectEntity project;
 
     @ManyToOne
-    private EmployerEntity assignee;
-
-    @ManyToOne
-    private EmployerEntity assigner;
+    @JoinColumn(name = "TEAM_MEMBER_ID")
+    private TeamMemberEntity assignee;
 
 }

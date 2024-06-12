@@ -1,50 +1,44 @@
 package com.mas.manageIT.model;
 
-import jakarta.persistence.MappedSuperclass;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.lang.NonNull;
-import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public abstract class Person {
 
-    @NonNull
     private Long id;
 
-    @NonNull
-    @Size(max = 50)
     private String firstName;
 
-    @NonNull
-    @Size(max = 50)
     private String lastName;
 
-    @NonNull
+    private LocalDate birthDate;
+
+    private Integer age;
+
     @Email
     private String email;
 
-    @NonNull
     @Size(min = 9, max = 9)
     private String phoneNumber;
 
-    @Nullable
-    @Size(max = 100)
     private String correspondenceAddress;
 
-    public Person(@NonNull Long id, @NonNull String firstName, @NonNull String lastName, @NonNull String email, @NonNull String phoneNumber, @Nullable String correspondenceAddress) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.correspondenceAddress = correspondenceAddress;
-    }
+    private Boolean isArmyMember;
+
+    private String maidenName;
+
+    private Boolean isPregnant;
 
     public abstract String getType();
+
+    public abstract Boolean isMale();
 
 }
