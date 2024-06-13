@@ -29,7 +29,7 @@ import java.util.List;
 @EqualsAndHashCode
 
 @Entity
-@Table(name = "ORDER")
+@Table(name = "ORDERS")
 public class OrderEntity {
 
     @Id

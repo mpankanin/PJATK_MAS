@@ -22,7 +22,7 @@ public class CustomerEntity extends PersonEntity{
     @Column(name = "COMPANY")
     private String company;
 
-    @ManyToMany(mappedBy = "customers")
+    @OneToMany(mappedBy = "customer")
     private List<OrderEntity> orders;
 
 }

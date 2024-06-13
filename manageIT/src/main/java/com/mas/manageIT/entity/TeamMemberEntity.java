@@ -39,7 +39,7 @@ public class TeamMemberEntity extends EmployerEntity{
     private List<ResourceEntity> resources;
 
     @ManyToOne
-    @JoinColumn(name = "WAREHOUSE_ID")
-    private WarehouseEntity warehouse;
+    @JoinColumn(name = "PROJECT_TEAM_ID")
+    private ProjectTeamEntity projectTeam;
 
 }
