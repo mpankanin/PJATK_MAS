@@ -1,5 +1,6 @@
 package com.mas.manageIT.model;
 
+import com.mas.manageIT.associacionsManager.ObjectPlusPlus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -12,8 +13,8 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
-public abstract class Person {
+@EqualsAndHashCode(callSuper = false)
+public abstract class Person extends ObjectPlusPlus {
 
     private Long id;
 

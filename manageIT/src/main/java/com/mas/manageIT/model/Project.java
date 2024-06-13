@@ -1,5 +1,6 @@
 package com.mas.manageIT.model;
 
+import com.mas.manageIT.associacionsManager.ObjectPlusPlus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,8 +12,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
-public class Project {
+@EqualsAndHashCode(callSuper = false)
+public class Project extends ObjectPlusPlus {
 
     private Long id;
 
