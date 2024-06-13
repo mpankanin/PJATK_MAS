@@ -2,6 +2,7 @@ package com.mas.manageIT.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 public abstract class Person {
 
     private Long id;
@@ -21,13 +23,11 @@ public abstract class Person {
 
     private LocalDate birthDate;
 
-    private Integer age;
-
     @Email
     private String email;
 
     @Size(min = 9, max = 9)
-    private String phoneNumber;
+    private Integer phoneNumber;
 
     private String correspondenceAddress;
 

@@ -19,7 +19,7 @@ public class Order {
 
     private LocalDate insertionDate;
 
-    private Integer price;
+    private Double price;
 
     private PaymentStatus paymentStatus;
 

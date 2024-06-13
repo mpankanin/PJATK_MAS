@@ -16,6 +16,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
@@ -25,6 +26,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 
 @Entity
 @Table(name = "ORDER")
@@ -38,7 +40,7 @@ public class OrderEntity {
     private LocalDate insertionDate;
 
     @Column(name = "PRICE", nullable = false)
-    private double price;
+    private Double price;
 
     @Column(name = "PAYMENT_STATUS", nullable = false)
     private PaymentStatus paymentStatus;
