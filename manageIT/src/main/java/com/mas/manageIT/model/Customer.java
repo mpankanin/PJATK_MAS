@@ -21,8 +21,6 @@ public class Customer extends Person {
 
     private static List<Customer> extent = new ArrayList<>();
 
-    private List<CustomerOrder> customerOrders = new ArrayList<>();
-
     public static void addCustomer(Customer customer){
         extent.add(customer);
     }
@@ -31,7 +29,6 @@ public class Customer extends Person {
         extent.remove(customer);
     }
 
-    //class method
     public static void showExtent(){
         System.out.println("Extent of the class: " + Customer.class.getName());
         for (Customer customer : extent){
@@ -39,36 +36,6 @@ public class Customer extends Person {
         }
     }
 
-    public static List<Customer> getCustomers() {
-        return extent;
-    }
-
-    //add association with an attribute
-    public void addOrderAttr(Order order, Double price){
-        for(CustomerOrder customerOrder : customerOrders){
-            if(customerOrder.getOrder().equals(order)){
-                return;
-            }
-        }
-        CustomerOrder customerOrder = new CustomerOrder(price, this, order);
-
-        customerOrders.add(customerOrder);
-        order.getCustomerOrders().add(customerOrder);
-    }
-
-    //remove association with an attribute
-    public void removeOrderAttr(Order order){
-        for(CustomerOrder customerOrder : customerOrders){
-            if(customerOrder.getOrder().equals(order)){
-                customerOrders.remove(customerOrder);
-                order.getCustomerOrders().remove(customerOrder);
-                return;
-            }
-        }
-        //customerOrders.removeIf(customerOrder -> customerOrder.getOrder().equals(order));
-    }
-
-    //override method
     @Override
     public String getType() {
         return this.getClass().getSimpleName();
@@ -76,7 +43,7 @@ public class Customer extends Person {
 
     @Override
     public Boolean isMale() {
-        return null;
+        return super.getIsArmyMember() != null && super.getIsArmyMember();
     }
 
 }

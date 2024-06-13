@@ -1,9 +1,9 @@
 package com.mas.manageIT.model;
 
-import com.mas.manageIT.exception.AssociationException;
 import com.mas.manageIT.model.enums.TaskType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 public class Task {
 
     private Long id;
@@ -26,28 +27,5 @@ public class Task {
     private Project project;
 
     private TeamMember assignee;
-
-
-    //qualified association - second side
-    public void addProject(Project project) {
-        if(this.project == null){
-            this.project = project;
-
-            //primary connection
-            project.addTaskQualified(this);
-        } else if(!this.project.equals(project)){
-            throw new AssociationException("The association already exist.");
-        }
-    }
-
-    //qualified association - second side
-    public void removeProject(Project project) {
-        if(this.project.equals(project)) {
-            this.project = null;
-
-            //primary connection
-            project.removeTaskQualified(this);
-        }
-    }
 
 }
