@@ -34,10 +34,6 @@ public class ProjectTeamEntity {
     @Column(name = "NAME", nullable = false)
     private String name;
 
-    @OneToOne
-    @JoinColumn(name = "TEAM_LEADER_ID")
-    private TeamMemberEntity teamLeader;
-
     @OneToMany(mappedBy = "projectTeam")
     private List<TeamMemberEntity> teamMembers;
 

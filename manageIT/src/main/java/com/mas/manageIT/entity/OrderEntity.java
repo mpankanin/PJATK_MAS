@@ -49,10 +49,6 @@ public class OrderEntity {
     @JoinColumn(name = "PERSON_ID")
     private CustomerEntity customer;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "PROJECT_ID")
-    private ProjectEntity project;
-
     @OneToMany(mappedBy = "order")
     private List<DocumentEntity> documents;
 

@@ -17,26 +17,6 @@ public class Customer extends Person {
 
     private String company;
 
-    private List<Order> orders;
-
-    private static List<Customer> extent = new ArrayList<>();
-
-
-    public static void addCustomer(Customer customer){
-        extent.add(customer);
-    }
-
-    public static void removeCustomer(Customer customer){
-        extent.remove(customer);
-    }
-
-    public static void showExtent(){
-        System.out.println("Extent of the class: " + Customer.class.getName());
-        for (Customer customer : extent){
-            System.out.println(customer);
-        }
-    }
-
     @Override
     public String getType() {
         return this.getClass().getSimpleName();

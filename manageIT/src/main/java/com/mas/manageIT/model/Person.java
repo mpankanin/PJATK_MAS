@@ -1,6 +1,6 @@
 package com.mas.manageIT.model;
 
-import com.mas.manageIT.associacionsManager.ObjectPlusPlus;
+import com.mas.manageIT.associacion_manager.ObjectPlusPlus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

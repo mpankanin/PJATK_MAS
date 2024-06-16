@@ -20,24 +20,4 @@ public class WarehouseManager extends EmployerEntity {
 
     private LocalDate forkliftLicense;
 
-    private Warehouse warehouse;
-
-    private static List<WarehouseManager> extent = new ArrayList<>();
-
-
-    public static void addWarehouseManager(WarehouseManager warehouseManager){
-        extent.add(warehouseManager);
-    }
-
-    public static void removeWarehouseManager(WarehouseManager warehouseManager){
-        extent.remove(warehouseManager);
-    }
-
-    public static void showExtent(){
-        System.out.println("Extent of the class: " + WarehouseManager.class.getName());
-        for (WarehouseManager warehouseManager : extent){
-            System.out.println(warehouseManager);
-        }
-    }
-
 }

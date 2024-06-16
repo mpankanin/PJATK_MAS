@@ -1,4 +1,4 @@
-package com.mas.manageIT.associacionsManager;
+package com.mas.manageIT.associacion_manager;
 
 import java.io.PrintStream;
 import java.io.Serializable;

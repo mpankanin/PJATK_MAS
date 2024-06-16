@@ -1,4 +1,7 @@
-package com.mas.manageIT.associacionsManager;
+package com.mas.manageIT.associacion_manager;
+
+import org.junit.platform.commons.logging.Logger;
+import org.junit.platform.commons.logging.LoggerFactory;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -12,6 +15,7 @@ import java.util.Map;
 public class ObjectPlus implements Serializable {
 
     private static Map<Class, List<ObjectPlus>> allExtents = new Hashtable<>();
+    private static final Logger logger = LoggerFactory.getLogger(ObjectPlus.class);
 
 
     public ObjectPlus() {
@@ -39,8 +43,9 @@ public class ObjectPlus implements Serializable {
         if (allExtents.containsKey(type)) {
             return (Iterable<T>) allExtents.get(type);
         }
-        throw new ClassNotFoundException(String.format ("%s. Stored extents: %s",
+        logger.error(() -> String.format ("%s. Stored extents: %s",
                 type.toString(), allExtents.keySet()));
+        return new ArrayList<T>();
     }
 
 }

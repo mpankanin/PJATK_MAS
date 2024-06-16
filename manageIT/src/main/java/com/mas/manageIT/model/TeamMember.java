@@ -20,23 +20,6 @@ public class TeamMember extends Employer{
 
     private LocalDate mbaDate;
 
-    private List<Task> tasks;
-
-    private List<Resource> resources;
-
-    private Warehouse warehouse;
-
-    private static List<TeamMember> extent = new ArrayList<>();
-
-
-    public static void addTeamMember(TeamMember teamMember){
-        extent.add(teamMember);
-    }
-
-    public static void removeTeamMember(TeamMember teamMember){
-        extent.remove(teamMember);
-    }
-
     @Override
     public String getType() {
         return TeamMember.class.getName();
