@@ -1,9 +1,19 @@
 package com.mas.manageIT.mapper;
 
+import com.mas.manageIT.associacion_manager.ObjectPlus;
 import com.mas.manageIT.entity.WarehouseManagerEntity;
+import com.mas.manageIT.model.Warehouse;
 import com.mas.manageIT.model.WarehouseManager;
+import org.junit.platform.commons.logging.Logger;
+import org.junit.platform.commons.logging.LoggerFactory;
+
+import java.util.List;
+import java.util.Optional;
 
 public class WarehouseManagerMapper {
+
+    private static final Logger logger = LoggerFactory.getLogger(WarehouseManager.class);
+
 
     public static WarehouseManager toModel(WarehouseManagerEntity warehouseManagerEntity){
         WarehouseManager warehouseManager = new WarehouseManager();
@@ -23,6 +33,7 @@ public class WarehouseManagerMapper {
         warehouseManager.setSalary(warehouseManagerEntity.getSalary());
         warehouseManager.setBonus(warehouseManagerEntity.getBonus());
         warehouseManager.setForkliftLicense(warehouseManagerEntity.getForkliftLicense());
+        addWarehouseManagerWarehouseLink(warehouseManager, warehouseManagerEntity.getWarehouse().getId()); //link
         return warehouseManager;
     }
 
@@ -46,4 +57,21 @@ public class WarehouseManagerMapper {
         warehouseManagerEntity.setForkliftLicense(warehouseManager.getForkliftLicense());
         return warehouseManagerEntity;
     }
+
+    private static void addWarehouseManagerWarehouseLink(WarehouseManager warehouseManager, Long warehouseId) {
+        try {
+            List<Warehouse> warehouseExtent = (List<Warehouse>) ObjectPlus.getExtent(Warehouse.class);
+            Optional<Warehouse> theWarehouse = warehouseExtent.stream()
+                    .filter(warehouse -> warehouse.getId().equals(warehouseId))
+                    .findFirst();
+            if (theWarehouse.isPresent()){
+                warehouseManager.addLink("WarehouseManagerWarehouse", "WarehouseWarehouseManager", theWarehouse.get());
+            } else {
+                logger.error(() -> "Getting warehouse: " + warehouseId + " from extent failed.");
+            }
+        } catch (ClassNotFoundException e) {
+            logger.error(() -> "Getting warehouse's extent failed.");
+        }
+    }
+
 }

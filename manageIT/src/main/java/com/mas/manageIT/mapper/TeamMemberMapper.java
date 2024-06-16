@@ -1,9 +1,20 @@
 package com.mas.manageIT.mapper;
 
+import com.mas.manageIT.associacion_manager.ObjectPlus;
 import com.mas.manageIT.entity.TeamMemberEntity;
+import com.mas.manageIT.model.Customer;
+import com.mas.manageIT.model.ProjectTeam;
 import com.mas.manageIT.model.TeamMember;
+import org.junit.platform.commons.logging.Logger;
+import org.junit.platform.commons.logging.LoggerFactory;
+
+import java.util.List;
+import java.util.Optional;
 
 public class TeamMemberMapper {
+
+    private static final Logger logger = LoggerFactory.getLogger(TeamMember.class);
+
 
     public static TeamMember toModel(TeamMemberEntity teamMemberEntity) {
         TeamMember teamMember = new TeamMember();
@@ -24,6 +35,7 @@ public class TeamMemberMapper {
         teamMember.setBonus(teamMemberEntity.getBonus());
         teamMember.setRole(teamMemberEntity.getRole());
         teamMember.setMbaDate(teamMemberEntity.getMbaDate());
+        addTeamMemberProjectTeamLink(teamMember, teamMemberEntity.getProjectTeam().getId()); //link
         return teamMember;
     }
 
@@ -47,6 +59,22 @@ public class TeamMemberMapper {
         teamMemberEntity.setRole(teamMember.getRole());
         teamMemberEntity.setMbaDate(teamMember.getMbaDate());
         return teamMemberEntity;
+    }
+
+    private static void addTeamMemberProjectTeamLink(TeamMember teamMember, Long projectTeamId) {
+        try {
+            List<ProjectTeam> ptExtent = (List<ProjectTeam>) ObjectPlus.getExtent(ProjectTeam.class);
+            Optional<ProjectTeam> thePT = ptExtent.stream()
+                    .filter(pt -> pt.getId().equals(projectTeamId))
+                    .findFirst();
+            if (thePT.isPresent()){
+                teamMember.addLink("TeamMemberProjectTeam", "ProjectTeamTeamMember", thePT.get());
+            } else {
+                logger.error(() -> "Getting project team: " + projectTeamId + " from extent failed.");
+            }
+        } catch (ClassNotFoundException e) {
+            logger.error(() -> "Getting project team's extent failed.");
+        }
     }
 
 }

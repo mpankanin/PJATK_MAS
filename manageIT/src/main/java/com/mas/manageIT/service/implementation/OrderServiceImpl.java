@@ -57,4 +57,9 @@ public class OrderServiceImpl implements OrderService {
         return new ArrayList<>();
     }
 
+    @Override
+    public Order get(Long orderId) {
+        return null;
+    }
+
 }

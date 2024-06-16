@@ -27,10 +27,16 @@ public class OrderController {
         return ResponseEntity.ok(orders);
     }
 
-    @GetMapping("/{customerId}")
+    @GetMapping("customer/{customerId}")
     public ResponseEntity<List<Order>> getAll(@PathVariable long customerId){
         List<Order> orders = orderService.getAll(customerId);
         return ResponseEntity.ok(orders);
+    }
+
+    @GetMapping("/{orderId}")
+    public ResponseEntity<Order> get(@PathVariable long orderId){
+        Order order = orderService.get(orderId);
+        return ResponseEntity.ok(order);
     }
 
 }

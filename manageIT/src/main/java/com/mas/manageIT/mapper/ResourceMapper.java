@@ -1,9 +1,21 @@
 package com.mas.manageIT.mapper;
 
+import com.mas.manageIT.associacion_manager.ObjectPlus;
 import com.mas.manageIT.entity.ResourceEntity;
+import com.mas.manageIT.model.Customer;
 import com.mas.manageIT.model.Resource;
+import com.mas.manageIT.model.TeamMember;
+import com.mas.manageIT.model.Warehouse;
+import org.junit.platform.commons.logging.Logger;
+import org.junit.platform.commons.logging.LoggerFactory;
+
+import java.util.List;
+import java.util.Optional;
 
 public class ResourceMapper {
+
+    private static final Logger logger = LoggerFactory.getLogger(ResourceMapper.class);
+
 
     public static Resource toModel(ResourceEntity resourceEntity) {
         Resource resource = new Resource();
@@ -12,6 +24,8 @@ public class ResourceMapper {
         resource.setName(resourceEntity.getName());
         resource.setResourceType(resourceEntity.getResourceType());
         resource.setPurchaseDate(resourceEntity.getPurchaseDate());
+        addResourceTeamMemberLink(resource, resourceEntity.getAssignee().getId());
+        addResourceWarehouseLink(resource, resourceEntity.getWarehouse().getId());
         return resource;
     }
 
@@ -23,6 +37,38 @@ public class ResourceMapper {
         resourceEntity.setResourceType(resource.getResourceType());
         resourceEntity.setPurchaseDate(resource.getPurchaseDate());
         return resourceEntity;
+    }
+
+    private static void addResourceWarehouseLink(Resource resource, Long warehouseId) {
+        try {
+            List<Warehouse> warehouseExtent = (List<Warehouse>) ObjectPlus.getExtent(Warehouse.class);
+            Optional<Warehouse> theWarehouse = warehouseExtent.stream()
+                    .filter(w -> w.getId().equals(warehouseId))
+                    .findFirst();
+            if (theWarehouse.isPresent()){
+                resource.addLink("ResourceWarehouse", "WarehouseResource", theWarehouse.get());
+            } else {
+                logger.error(() -> "Getting warehouse: " + warehouseId + " from extent failed.");
+            }
+        } catch (ClassNotFoundException e) {
+            logger.error(() -> "Getting warehouse's extent failed.");
+        }
+    }
+
+    private static void addResourceTeamMemberLink(Resource resource, Long teamMemberId) {
+        try {
+            List<TeamMember> teamMemberExtent = (List<TeamMember>) ObjectPlus.getExtent(TeamMember.class);
+            Optional<TeamMember> theTeamMember = teamMemberExtent.stream()
+                    .filter(tm -> tm.getId().equals(teamMemberId))
+                    .findFirst();
+            if (theTeamMember.isPresent()){
+                resource.addLink("ResourceTeamMember", "TeamMemberResource", theTeamMember.get());
+            } else {
+                logger.error(() -> "Getting team member: " + teamMemberExtent + " from extent failed.");
+            }
+        } catch (ClassNotFoundException e) {
+            logger.error(() -> "Getting team member's extent failed.");
+        }
     }
 
 }

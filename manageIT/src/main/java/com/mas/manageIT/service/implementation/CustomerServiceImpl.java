@@ -31,4 +31,9 @@ public class CustomerServiceImpl implements CustomerService {
         return new ArrayList<>();
     }
 
+    @Override
+    public Customer get(Long customerId) {
+        return null;
+    }
+
 }

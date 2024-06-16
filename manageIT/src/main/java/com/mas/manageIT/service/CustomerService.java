@@ -9,4 +9,5 @@ public interface CustomerService {
 
     List<Customer> getAll();
 
+    Customer get(Long customerId);
 }

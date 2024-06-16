@@ -47,7 +47,7 @@ public class OrderMapper {
                 logger.error(() -> "Getting customer: " + customerId + " from extent failed.");
             }
         } catch (ClassNotFoundException e) {
-            logger.error(() -> "Getting customer extent failed.");
+            logger.error(() -> "Getting customer's extent failed.");
         }
     }
 
