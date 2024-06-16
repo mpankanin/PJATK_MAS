@@ -1,6 +1,5 @@
 package com.mas.manageIT.data_loader;
 
-import com.mas.manageIT.associacion_manager.ObjectPlus;
 import com.mas.manageIT.mapper.CustomerMapper;
 import com.mas.manageIT.mapper.DocumentMapper;
 import com.mas.manageIT.mapper.OrderMapper;
@@ -11,7 +10,6 @@ import com.mas.manageIT.mapper.TaskMapper;
 import com.mas.manageIT.mapper.TeamMemberMapper;
 import com.mas.manageIT.mapper.WarehouseManagerMapper;
 import com.mas.manageIT.mapper.WarehouseMapper;
-import com.mas.manageIT.model.Customer;
 import com.mas.manageIT.repository.CustomerRepository;
 import com.mas.manageIT.repository.DocumentRepository;
 import com.mas.manageIT.repository.OrderRepository;
@@ -70,6 +68,10 @@ public class DataLoadSaveService {
 
     @PreDestroy
     public void saveData() {
+
+    }
+
+    private void loadCustomerLinks() {
 
     }
 

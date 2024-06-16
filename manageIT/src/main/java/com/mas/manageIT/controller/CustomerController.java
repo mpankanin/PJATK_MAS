@@ -10,21 +10,20 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/customers")
 public class CustomerController {
 
-    final CustomerService customerService;
+    private final CustomerService customerService;
 
 
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public ResponseEntity<List<Customer>> getAll(){
-        List<Customer> customers = (List<Customer>) customerService.getAll();
+        List<Customer> customers = customerService.getAll();
         return ResponseEntity.ok(customers);
     }
-
 
 }
