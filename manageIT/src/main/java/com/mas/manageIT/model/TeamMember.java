@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -25,6 +26,16 @@ public class TeamMember extends Employer{
 
     private Warehouse warehouse;
 
+    private static List<TeamMember> extent = new ArrayList<>();
+
+
+    public static void addTeamMember(TeamMember teamMember){
+        extent.add(teamMember);
+    }
+
+    public static void removeTeamMember(TeamMember teamMember){
+        extent.remove(teamMember);
+    }
 
     @Override
     public String getType() {

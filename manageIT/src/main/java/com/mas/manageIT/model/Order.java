@@ -29,7 +29,6 @@ public class Order extends ObjectPlusPlus {
 
     private List<Document> documents;
 
-
     private static List<Order> extent = new ArrayList<>();
     private static List<Document> allDocuments = new ArrayList<>();
 

@@ -22,8 +22,8 @@ public class Document extends ObjectPlusPlus {
 
     private Order order;
 
-
     private static List<Document> extent = new ArrayList<>();
+
 
     private Document(Long id, DocumentType type, String description, Order order) {
         this.id = id;

@@ -19,8 +19,8 @@ public class Customer extends Person {
 
     private List<Order> orders;
 
-
     private static List<Customer> extent = new ArrayList<>();
+
 
     public static void addCustomer(Customer customer){
         extent.add(customer);
