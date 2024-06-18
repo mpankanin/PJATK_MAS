@@ -1,7 +1,11 @@
 package com.mas.manageIT.mapper;
 
 import com.mas.manageIT.associacion_manager.ObjectPlus;
+import com.mas.manageIT.associacion_manager.ObjectPlusPlus;
+import com.mas.manageIT.entity.ProjectEntity;
 import com.mas.manageIT.entity.TaskEntity;
+import com.mas.manageIT.entity.TeamMemberEntity;
+import com.mas.manageIT.model.Customer;
 import com.mas.manageIT.model.Project;
 import com.mas.manageIT.model.Task;
 import com.mas.manageIT.model.TeamMember;
@@ -37,6 +41,8 @@ public class TaskMapper {
         taskEntity.setTaskType(task.getTaskType());
         taskEntity.setStartDate(task.getStartDate());
         taskEntity.setFinishDate(task.getFinishDate());
+        taskEntity.setAssignee(getTeamMemberLink(task)); //foreign key
+        taskEntity.setProject(getProjectLink(task)); //foreign key
         return taskEntity;
     }
 
@@ -70,6 +76,28 @@ public class TaskMapper {
         } catch (ClassNotFoundException e) {
             logger.error(() -> "Getting team member's extent failed.");
         }
+    }
+
+    private static ProjectEntity getProjectLink(Task task) {
+        try {
+            ObjectPlusPlus[] links = task.getLinks("TaskProject");
+            Project project = (Project) links[0];
+            return ProjectMapper.toEntity(project);
+        } catch (Exception e) {
+            logger.error(() -> "Getting project from a link failed.");
+        }
+        return null;
+    }
+
+    private static TeamMemberEntity getTeamMemberLink(Task task) {
+        try {
+            ObjectPlusPlus[] links = task.getLinks("TaskTeamMember");
+            TeamMember teamMember = (TeamMember) links[0];
+            return TeamMemberMapper.toEntity(teamMember);
+        } catch (Exception e) {
+            logger.error(() -> "Getting team member from a link failed.");
+        }
+        return null;
     }
 
 }

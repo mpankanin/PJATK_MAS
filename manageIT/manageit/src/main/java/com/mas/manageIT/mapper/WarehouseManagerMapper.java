@@ -1,7 +1,10 @@
 package com.mas.manageIT.mapper;
 
 import com.mas.manageIT.associacion_manager.ObjectPlus;
+import com.mas.manageIT.associacion_manager.ObjectPlusPlus;
+import com.mas.manageIT.entity.WarehouseEntity;
 import com.mas.manageIT.entity.WarehouseManagerEntity;
+import com.mas.manageIT.model.Customer;
 import com.mas.manageIT.model.Warehouse;
 import com.mas.manageIT.model.WarehouseManager;
 import org.junit.platform.commons.logging.Logger;
@@ -55,6 +58,7 @@ public class WarehouseManagerMapper {
         warehouseManagerEntity.setSalary(warehouseManager.getSalary());
         warehouseManagerEntity.setBonus(warehouseManager.getBonus());
         warehouseManagerEntity.setForkliftLicense(warehouseManager.getForkliftLicense());
+        warehouseManagerEntity.setWarehouse(getWarehouseLink(warehouseManager)); //foreign key
         return warehouseManagerEntity;
     }
 
@@ -72,6 +76,17 @@ public class WarehouseManagerMapper {
         } catch (ClassNotFoundException e) {
             logger.error(() -> "Getting warehouse's extent failed.");
         }
+    }
+
+    private static WarehouseEntity getWarehouseLink(WarehouseManager warehouseManager) {
+        try {
+            ObjectPlusPlus[] links = warehouseManager.getLinks("WarehouseManagerWarehouse");
+            Warehouse warehouse = (Warehouse) links[0];
+            return WarehouseMapper.toEntity(warehouse);
+        } catch (Exception e) {
+            logger.error(() -> "Getting warehouse from a link failed.");
+        }
+        return null;
     }
 
 }

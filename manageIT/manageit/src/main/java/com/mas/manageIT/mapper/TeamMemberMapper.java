@@ -1,7 +1,10 @@
 package com.mas.manageIT.mapper;
 
 import com.mas.manageIT.associacion_manager.ObjectPlus;
+import com.mas.manageIT.associacion_manager.ObjectPlusPlus;
+import com.mas.manageIT.entity.ProjectTeamEntity;
 import com.mas.manageIT.entity.TeamMemberEntity;
+import com.mas.manageIT.model.Customer;
 import com.mas.manageIT.model.ProjectTeam;
 import com.mas.manageIT.model.TeamMember;
 import org.junit.platform.commons.logging.Logger;
@@ -57,6 +60,7 @@ public class TeamMemberMapper {
         teamMemberEntity.setBonus(teamMember.getBonus());
         teamMemberEntity.setRole(teamMember.getRole());
         teamMemberEntity.setMbaDate(teamMember.getMbaDate());
+        teamMemberEntity.setProjectTeam(getProjectTeamLink(teamMember)); //foreign key
         return teamMemberEntity;
     }
 
@@ -74,6 +78,17 @@ public class TeamMemberMapper {
         } catch (ClassNotFoundException e) {
             logger.error(() -> "Getting project team's extent failed.");
         }
+    }
+
+    private static ProjectTeamEntity getProjectTeamLink(TeamMember teamMember) {
+        try {
+            ObjectPlusPlus[] links = teamMember.getLinks("TeamMemberProjectTeam");
+            ProjectTeam projectTeam = (ProjectTeam) links[0];
+            return ProjectTeamMapper.toEntity(projectTeam);
+        } catch (Exception e) {
+            logger.error(() -> "Getting project team from a link failed.");
+        }
+        return null;
     }
 
 }

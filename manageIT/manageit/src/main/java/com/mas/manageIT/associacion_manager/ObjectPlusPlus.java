@@ -1,12 +1,18 @@
 package com.mas.manageIT.associacion_manager;
 
+import com.mas.manageIT.exception.CustomerNotFoundException;
+import com.mas.manageIT.model.Customer;
+
 import java.io.PrintStream;
 import java.io.Serializable;
+import java.lang.invoke.TypeDescriptor;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 public class ObjectPlusPlus extends ObjectPlus implements Serializable {

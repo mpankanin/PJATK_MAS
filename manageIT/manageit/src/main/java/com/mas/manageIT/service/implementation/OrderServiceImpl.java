@@ -3,6 +3,7 @@ package com.mas.manageIT.service.implementation;
 import com.mas.manageIT.associacion_manager.ObjectPlus;
 import com.mas.manageIT.associacion_manager.ObjectPlusPlus;
 import com.mas.manageIT.exception.CustomerNotFoundException;
+import com.mas.manageIT.exception.OrderNotFoundException;
 import com.mas.manageIT.model.Customer;
 import com.mas.manageIT.model.Order;
 import com.mas.manageIT.repository.OrderRepository;
@@ -59,6 +60,17 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order get(Long orderId) {
+        try {
+            List<Order> extent = (List<Order>) Order.getExtent(Order.class);
+            Optional<Order> optional = extent.stream().filter(o -> o.getId().equals(orderId)).findFirst();
+            if (optional.isPresent()) {
+                return optional.get();
+            } else {
+                throw new OrderNotFoundException("Order: " + orderId + " doesn't exist.");
+            }
+        } catch (ClassNotFoundException e) {
+            logger.error(() -> "Couldn't get a order's extent.");
+        }
         return null;
     }
 

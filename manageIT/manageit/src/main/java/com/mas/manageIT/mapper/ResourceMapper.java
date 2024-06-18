@@ -1,7 +1,11 @@
 package com.mas.manageIT.mapper;
 
 import com.mas.manageIT.associacion_manager.ObjectPlus;
+import com.mas.manageIT.associacion_manager.ObjectPlusPlus;
 import com.mas.manageIT.entity.ResourceEntity;
+import com.mas.manageIT.entity.TeamMemberEntity;
+import com.mas.manageIT.entity.WarehouseEntity;
+import com.mas.manageIT.model.Customer;
 import com.mas.manageIT.model.Resource;
 import com.mas.manageIT.model.TeamMember;
 import com.mas.manageIT.model.Warehouse;
@@ -23,8 +27,8 @@ public class ResourceMapper {
         resource.setName(resourceEntity.getName());
         resource.setResourceType(resourceEntity.getResourceType());
         resource.setPurchaseDate(resourceEntity.getPurchaseDate());
-        addResourceTeamMemberLink(resource, resourceEntity.getAssignee().getId());
-        addResourceWarehouseLink(resource, resourceEntity.getWarehouse().getId());
+        addResourceTeamMemberLink(resource, resourceEntity.getAssignee().getId()); //link
+        addResourceWarehouseLink(resource, resourceEntity.getWarehouse().getId()); //link
         return resource;
     }
 
@@ -35,6 +39,8 @@ public class ResourceMapper {
         resourceEntity.setName(resource.getName());
         resourceEntity.setResourceType(resource.getResourceType());
         resourceEntity.setPurchaseDate(resource.getPurchaseDate());
+        resourceEntity.setAssignee(getTeamMemberLink(resource)); //foreign key
+        resourceEntity.setWarehouse(getWarehouseLink(resource)); //foreign key
         return resourceEntity;
     }
 
@@ -68,6 +74,28 @@ public class ResourceMapper {
         } catch (ClassNotFoundException e) {
             logger.error(() -> "Getting team member's extent failed.");
         }
+    }
+
+    private static WarehouseEntity getWarehouseLink(Resource resource) {
+        try {
+            ObjectPlusPlus[] links = resource.getLinks("ResourceWarehouse");
+            Warehouse warehouse = (Warehouse) links[0];
+            return WarehouseMapper.toEntity(warehouse);
+        } catch (Exception e) {
+            logger.error(() -> "Getting warehouse from a link failed.");
+        }
+        return null;
+    }
+
+    private static TeamMemberEntity getTeamMemberLink(Resource resource) {
+        try {
+            ObjectPlusPlus[] links = resource.getLinks("ResourceTeamMember");
+            TeamMember teamMember = (TeamMember) links[0];
+            return TeamMemberMapper.toEntity(teamMember);
+        } catch (Exception e) {
+            logger.error(() -> "Getting team member from a link failed.");
+        }
+        return null;
     }
 
 }

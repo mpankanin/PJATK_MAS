@@ -1,12 +1,17 @@
 package com.mas.manageIT.mapper;
 
 import com.mas.manageIT.associacion_manager.ObjectPlus;
+import com.mas.manageIT.associacion_manager.ObjectPlusPlus;
+import com.mas.manageIT.entity.CustomerEntity;
 import com.mas.manageIT.entity.OrderEntity;
 import com.mas.manageIT.model.Customer;
 import com.mas.manageIT.model.Order;
+import com.mas.manageIT.service.CustomerService;
 import org.junit.platform.commons.logging.Logger;
 import org.junit.platform.commons.logging.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +37,7 @@ public class OrderMapper {
         orderEntity.setInsertionDate(order.getInsertionDate());
         orderEntity.setPrice(order.getPrice());
         orderEntity.setPaymentStatus(order.getPaymentStatus());
+        orderEntity.setCustomer(getCustomerLink(order)); //foreign key
         return orderEntity;
     }
 
@@ -49,6 +55,17 @@ public class OrderMapper {
         } catch (ClassNotFoundException e) {
             logger.error(() -> "Getting customer's extent failed.");
         }
+    }
+
+    private static CustomerEntity getCustomerLink(Order order) {
+        try {
+            ObjectPlusPlus[] links = order.getLinks("OrderCustomer");
+            Customer customer = (Customer) links[0];
+            return CustomerMapper.toEntity(customer);
+        } catch (Exception e) {
+            logger.error(() -> "Getting customer from a link failed.");
+        }
+        return null;
     }
 
 }

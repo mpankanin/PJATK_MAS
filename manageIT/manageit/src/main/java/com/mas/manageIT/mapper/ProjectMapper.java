@@ -1,7 +1,11 @@
 package com.mas.manageIT.mapper;
 
 import com.mas.manageIT.associacion_manager.ObjectPlus;
+import com.mas.manageIT.associacion_manager.ObjectPlusPlus;
+import com.mas.manageIT.entity.OrderEntity;
 import com.mas.manageIT.entity.ProjectEntity;
+import com.mas.manageIT.entity.ProjectTeamEntity;
+import com.mas.manageIT.model.Customer;
 import com.mas.manageIT.model.Order;
 import com.mas.manageIT.model.Project;
 import com.mas.manageIT.model.ProjectTeam;
@@ -36,6 +40,8 @@ public class ProjectMapper {
         projectEntity.setDescription(project.getDescription());
         projectEntity.setStartDate(project.getStartDate());
         projectEntity.setFinishDate(project.getFinishDate());
+        projectEntity.setOrder(getOrderLink(project)); //foreign key
+        projectEntity.setProjectTeam(getProjectTeamLink(project)); //foreign key
         return projectEntity;
     }
 
@@ -69,6 +75,28 @@ public class ProjectMapper {
         } catch (ClassNotFoundException e) {
             logger.error(() -> "Getting order's extent failed.");
         }
+    }
+
+    private static ProjectTeamEntity getProjectTeamLink(Project project) {
+        try {
+            ObjectPlusPlus[] links = project.getLinks("ProjectProjectTeam");
+            ProjectTeam projectTeam = (ProjectTeam) links[0];
+            return ProjectTeamMapper.toEntity(projectTeam);
+        } catch (Exception e) {
+            logger.error(() -> "Getting project team from a link failed.");
+        }
+        return null;
+    }
+
+    private static OrderEntity getOrderLink(Project project) {
+        try {
+            ObjectPlusPlus[] links = project.getLinks("ProjectOrder");
+            Order order = (Order) links[0];
+            return OrderMapper.toEntity(order);
+        } catch (Exception e) {
+            logger.error(() -> "Getting order from a link failed.");
+        }
+        return null;
     }
 
 }

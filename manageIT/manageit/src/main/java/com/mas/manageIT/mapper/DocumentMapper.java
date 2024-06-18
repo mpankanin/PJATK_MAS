@@ -1,8 +1,12 @@
 package com.mas.manageIT.mapper;
 
 import com.mas.manageIT.associacion_manager.ObjectPlus;
+import com.mas.manageIT.associacion_manager.ObjectPlusPlus;
 import com.mas.manageIT.entity.DocumentEntity;
+import com.mas.manageIT.entity.OrderEntity;
+import com.mas.manageIT.model.Customer;
 import com.mas.manageIT.model.Document;
+import com.mas.manageIT.model.Order;
 import org.junit.platform.commons.logging.Logger;
 import org.junit.platform.commons.logging.LoggerFactory;
 
@@ -30,6 +34,7 @@ public class DocumentMapper {
         documentEntity.setId(document.getId());
         documentEntity.setType(document.getType());
         documentEntity.setDescription(document.getDescription());
+        documentEntity.setOrder(getDocumentLink(document)); //foreign key
         return documentEntity;
     }
 
@@ -47,6 +52,17 @@ public class DocumentMapper {
         } catch (ClassNotFoundException e) {
             logger.error(() -> "Getting order's extent failed.");
         }
+    }
+
+    private static OrderEntity getDocumentLink(Document document) {
+        try {
+            ObjectPlusPlus[] links = document.getLinks("DocumentOrder");
+            Order order = (Order) links[0];
+            return OrderMapper.toEntity(order);
+        } catch (Exception e) {
+            logger.error(() -> "Getting order from a link failed.");
+        }
+        return null;
     }
 
 }
