@@ -6,6 +6,7 @@ import com.mas.manageIT.exception.CustomerNotFoundException;
 import com.mas.manageIT.exception.OrderNotFoundException;
 import com.mas.manageIT.model.Customer;
 import com.mas.manageIT.model.Order;
+import com.mas.manageIT.model.enums.PaymentStatus;
 import com.mas.manageIT.repository.OrderRepository;
 import com.mas.manageIT.service.OrderService;
 import org.junit.platform.commons.logging.Logger;
@@ -40,7 +41,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getAll(Long customerId) {
         try {
-            List<Customer> customerExtent = (List<Customer>) Customer.getExtent(Customer.class);
+            List<Customer> customerExtent = (List<Customer>) ObjectPlus.getExtent(Customer.class);
             Optional<Customer> optional = customerExtent.stream().filter(c -> c.getId().equals(customerId)).findFirst();
             if (optional.isPresent()){
                 Customer customer = optional.get();
@@ -61,10 +62,43 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order get(Long orderId) {
         try {
-            List<Order> extent = (List<Order>) Order.getExtent(Order.class);
+            List<Order> extent = (List<Order>) ObjectPlus.getExtent(Order.class);
             Optional<Order> optional = extent.stream().filter(o -> o.getId().equals(orderId)).findFirst();
             if (optional.isPresent()) {
                 return optional.get();
+            } else {
+                throw new OrderNotFoundException("Order: " + orderId + " doesn't exist.");
+            }
+        } catch (ClassNotFoundException e) {
+            logger.error(() -> "Couldn't get a order's extent.");
+        }
+        return null;
+    }
+
+    @Override
+    public void cancel(Long orderId) throws OrderNotFoundException{
+        try {
+            List<Order> extent = (List<Order>) ObjectPlus.getExtent(Order.class);
+            Optional<Order> optional = extent.stream().filter(o -> o.getId().equals(orderId)).findFirst();
+            if (optional.isPresent()) {
+                extent.remove(optional.get());
+            } else {
+                throw new OrderNotFoundException("Order: " + orderId + " doesn't exist.");
+            }
+        } catch (ClassNotFoundException e) {
+            logger.error(() -> "Couldn't get a order's extent.");
+        }
+    }
+
+    @Override
+    public Order pay(Long orderId) throws OrderNotFoundException{
+        try {
+            List<Order> extent = (List<Order>) ObjectPlus.getExtent(Order.class);
+            Optional<Order> optional = extent.stream().filter(o -> o.getId().equals(orderId)).findFirst();
+            if (optional.isPresent()) {
+                Order order = optional.get();
+                order.setPaymentStatus(PaymentStatus.PAID);
+                return order;
             } else {
                 throw new OrderNotFoundException("Order: " + orderId + " doesn't exist.");
             }

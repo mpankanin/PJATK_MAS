@@ -24,4 +24,9 @@ public class Project extends ObjectPlusPlus {
 
     private LocalDate finishDate;
 
+
+    public void assign(ProjectTeam projectTeam){
+        projectTeam.addLink("ProjectTeamProject", "ProjectProjectTeam", this);
+    }
+
 }

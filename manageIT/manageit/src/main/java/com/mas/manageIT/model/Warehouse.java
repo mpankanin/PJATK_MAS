@@ -18,4 +18,9 @@ public class Warehouse extends ObjectPlusPlus {
 
     private String address;
 
+
+    public void assign(WarehouseManager warehouseManager){
+        warehouseManager.addLink("WarehouseManagerWarehouse", "WarehouseWarehouseManager", this);
+    }
+
 }
